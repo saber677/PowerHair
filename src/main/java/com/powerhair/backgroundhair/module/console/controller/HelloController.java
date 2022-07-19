@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.controller;
+package com.powerhair.backgroundhair.module.console.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
