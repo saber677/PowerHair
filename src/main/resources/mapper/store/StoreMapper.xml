@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powerhair.backgroundhair.module.store.mapper.StoreMapper">
+
+
+    <insert id="save" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">
+        insert into store
+            (id, name, create_time, creator_id, update_time, updator_id)
+        values (#{id}, #{name}, #{createTime}, #{creatorId}, #{updateTime}, #{updatorId});
+    </insert>
+</mapper>

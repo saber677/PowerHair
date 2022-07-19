@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: powerhair
+  # mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/powerhair?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: 677saber
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations:
+    classpath:mapper/*/*.xml
+  type-aliases-package: com.powerhair.backgroundhair.module.*.mapper
+
+
