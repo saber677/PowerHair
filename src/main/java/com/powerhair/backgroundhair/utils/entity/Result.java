@@ -1,17 +1,13 @@
 package com.powerhair.backgroundhair.utils.entity;
 
+
 public class Result<T> {
     private Integer code;
     private String msg;
     private T data;
 
     public Result() {
-        super();
-    }
 
-    public Result(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
     }
 
     public Result(Integer code, String msg, T data) {
@@ -19,7 +15,6 @@ public class Result<T> {
         this.msg = msg;
         this.data = data;
     }
-
 
     public Integer getCode() {
         return code;
