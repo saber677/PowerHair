@@ -3,11 +3,7 @@ package com.powerhair.backgroundhair.utils.util;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.enums.ResultCodeEnum;
 import com.powerhair.backgroundhair.utils.enums.ResultMsgEnum;
-import com.sun.org.glassfish.external.statistics.Statistic;
-import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Objects;
 
 public class ResultUtil {
 

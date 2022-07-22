@@ -17,22 +17,33 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableKnife4j
 public class Knife4jConfiguration {
 
+    /**
+     * 扫描controller类
+     *
+     * @return
+     */
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())
-                .select()                .apis(RequestHandlerSelectors.basePackage("com.cunyu.springbootknife4jdemo.controller"))
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.powerhair.backgroundhair"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
+    /**
+     * knife4j简介详情展示
+     *
+     * @return
+     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .description("Kinfe4j 集成测试文档")
+                .title("PowerHair接口管理")
+                .description("API后端接口文档")
                 .contact(new Contact("luqiqi", "", "luqiqi.677@foxmail.com"))
-                .version("v1.1.0")
-                .title("API测试文档")
+                .version("v1.0.0")
                 .build();
     }
 }

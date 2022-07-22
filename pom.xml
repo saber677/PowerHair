@@ -8,14 +8,17 @@
         <version>2.7.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.powerhair</groupId>
     <artifactId>background-hair</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>background-hair</name>
     <description>background-hair</description>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
