@@ -5,6 +5,12 @@ import com.powerhair.backgroundhair.utils.entity.Result;
 
 public interface ConsoleAccountService {
 
+    /**
+     * 注册
+     *
+     * @param registerDTO
+     * @return
+     */
     Result register(RegisterDTO registerDTO);
 
 }

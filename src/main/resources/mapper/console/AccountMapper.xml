@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.powerhair.backgroundhair.module.console.mapper.AccountMapper">
-    <select id="get" parameterType="java.lang.Long">
-        select count(*)
-        from account;
+
+    <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.console.domain.Account">
+        <id property="id" column="id"/>
+        <result property="username" column="usernmae"/>
+        <result property="password" column="password"/>
+        <result property="createTime" column="create_time"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updatorId" column="updator_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,username,password,create_time,creator_id,update_time,updator_id
+    </sql>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM account
+        WHERE id=#{id};
     </select>
 
     <insert id="save" parameterType="com.powerhair.backgroundhair.module.console.domain.Account">
-        insert into account
-
+        INSERT INTO account(
+        <include refid="Base_Column_List"/>
+        )
+        VALUES(
+        #{id},
+        #{username},
+        #{password},
+        #{createTime},
+        #{creatorId},
+        #{updateTime},
+        #{updatorId}
+        )
     </insert>
 </mapper>
