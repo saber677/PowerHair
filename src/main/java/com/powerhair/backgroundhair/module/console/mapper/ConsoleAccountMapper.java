@@ -3,10 +3,12 @@ package com.powerhair.backgroundhair.module.console.mapper;
 import com.powerhair.backgroundhair.module.console.domain.Account;
 import org.apache.ibatis.annotations.Param;
 
-public interface AccountMapper {
+public interface ConsoleAccountMapper {
+
+    Account getByUserName(@Param(value = "username") String username);
 
     /**
-     *通过ID获取账号对象
+     * 通过ID获取账号对象
      *
      * @return
      */

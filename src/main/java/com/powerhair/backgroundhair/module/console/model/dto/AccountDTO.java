@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterDTO {
+public class AccountDTO {
 
     @ApiModelProperty(value = "注册账户")
     private String username;

@@ -1,6 +1,6 @@
 package com.powerhair.backgroundhair.module.console.controller;
 
-import com.powerhair.backgroundhair.module.console.model.dto.RegisterDTO;
+import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
 import com.powerhair.backgroundhair.module.console.service.ConsoleAccountService;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
@@ -21,15 +21,24 @@ public class ConsoleAccountController {
 
     @PostMapping(value = "/register")
     @ApiOperation(value = "注册账号")
-    public Result register(@RequestBody RegisterDTO registerDTO) {
-        consoleAccountService.register(registerDTO);
-
+    public Result register(@RequestBody AccountDTO registerDTO) {
+        try {
+            consoleAccountService.register(registerDTO);
+        } catch (Exception e) {
+            return ResultUtil.error(e.getMessage());
+        }
         return ResultUtil.success();
     }
 
     @PostMapping(value = "login")
     @ApiOperation(value = "登录账号")
-    public Result login() {
+    public Result login(@RequestBody AccountDTO accountDTO) {
+
+        try {
+            consoleAccountService.login(accountDTO);
+        } catch (Exception e) {
+            return ResultUtil.error(e.getMessage());
+        }
         return ResultUtil.success();
     }
 

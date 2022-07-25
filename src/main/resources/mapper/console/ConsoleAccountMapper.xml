@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.powerhair.backgroundhair.module.console.mapper.AccountMapper">
+<mapper namespace="com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper">
 
     <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.console.domain.Account">
         <id property="id" column="id"/>
@@ -38,4 +38,11 @@
         #{updatorId}
         )
     </insert>
+
+    <select id="getByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM account
+        WHERE username=#{username};
+    </select>
 </mapper>

@@ -5,8 +5,11 @@ import java.util.UUID;
 
 public class UUIDUtil {
 
-
     public static Long getPrimaryKey() {
-        return UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+        return generatePositiveNumber(UUID.randomUUID().getMostSignificantBits());
+    }
+
+    private static Long generatePositiveNumber(Long uuid) {
+        return uuid < 0 ? -uuid : uuid;
     }
 }

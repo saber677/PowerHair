@@ -1,7 +1,7 @@
 package com.powerhair.backgroundhair.module.console.controller;
 
 import com.powerhair.backgroundhair.module.console.domain.Account;
-import com.powerhair.backgroundhair.module.console.mapper.AccountMapper;
+import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
 import com.powerhair.backgroundhair.module.store.domain.Store;
 import com.powerhair.backgroundhair.module.store.mapper.StoreMapper;
 import com.powerhair.backgroundhair.utils.entity.Result;
@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Time;
 import java.util.Date;
-import java.util.UUID;
 
 @RestController
 @Api(tags = "后端测试专用")
@@ -23,7 +21,7 @@ public class TestController {
     @Autowired
     StoreMapper storeMapper;
     @Autowired
-    AccountMapper accountMapper;
+    ConsoleAccountMapper accountMapper;
 
     @GetMapping(value = "hello")
     public Result hello() {
