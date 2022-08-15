@@ -18,7 +18,7 @@ public class ConsoleAccountController {
     @Autowired
     ConsoleAccountService consoleAccountService;
 
-    @PostMapping(value = "login")
+    @PostMapping(value = "/login")
     @ApiOperation(value = "登录账号")
     public Result login(@RequestBody AccountDTO accountDTO) {
 
@@ -27,7 +27,7 @@ public class ConsoleAccountController {
         } catch (Exception e) {
             return ResultUtil.error(e.getMessage());
         }
-        return ResultUtil.success();
+        return ResultUtil.success("登录成功");
     }
 
 }

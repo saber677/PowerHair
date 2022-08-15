@@ -49,7 +49,12 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
     @Override
     public Result login(AccountDTO accountDTO) {
 
-        Account account = consoleAccountMapper.getByUserName(accountDTO.getUsername());
+        Account account = null;
+        try {
+            account = consoleAccountMapper.getByUserName(accountDTO.getUsername());
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
         if (!StringUtils.equals(account.getPassword(), accountDTO.getPassword())) {
             throw new RuntimeException("密码错误");
