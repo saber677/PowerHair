@@ -98,10 +98,10 @@ public class ResultUtil {
 
 
     private static Result errorResult(String msg, Object data) {
-        return StringUtils.isEmpty(msg) ? new Result(ResultCodeEnum.ERROR_CODE.getCode(), msg, data) : new Result(ResultCodeEnum.ERROR_CODE.getCode(), ResultMsgEnum.ERROR_MSG_DEFAULT.getMsg(), data);
+        return StringUtils.isNotEmpty(msg) ? new Result(ResultCodeEnum.ERROR_CODE.getCode(), msg, data) : new Result(ResultCodeEnum.ERROR_CODE.getCode(), ResultMsgEnum.ERROR_MSG_DEFAULT.getMsg(), data);
     }
 
     private static Result successResult(String msg, Object data) {
-        return StringUtils.isEmpty(msg) ? new Result(ResultCodeEnum.SUCCESS_CODE.getCode(), msg, data) : new Result(ResultCodeEnum.SUCCESS_CODE.getCode(), ResultMsgEnum.SUCCESS_MSG_DEFAULT.getMsg(), data);
+        return StringUtils.isNotEmpty(msg) ? new Result(ResultCodeEnum.SUCCESS_CODE.getCode(), msg, data) : new Result(ResultCodeEnum.SUCCESS_CODE.getCode(), ResultMsgEnum.SUCCESS_MSG_DEFAULT.getMsg(), data);
     }
 }
