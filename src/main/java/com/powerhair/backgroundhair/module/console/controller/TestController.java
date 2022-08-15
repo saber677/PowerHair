@@ -23,7 +23,7 @@ public class TestController {
     @Autowired
     ConsoleAccountMapper accountMapper;
 
-    @GetMapping(value = "hello")
+    @GetMapping(value = "/hello")
     public Result hello() {
 
         Account account = new Account();

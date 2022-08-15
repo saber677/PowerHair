@@ -26,27 +26,6 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
     ConsoleAccountMapper consoleAccountMapper;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Result register(AccountDTO accountDTO) {
-
-        try {
-            Account account = new Account();
-            account.setId(UUIDUtil.getPrimaryKey());
-            account.setUsername(accountDTO.getUsername());
-            account.setPassword(accountDTO.getPassword());
-            account.setCreateTime(new Date());
-            account.setUpdateTime(new Date());
-
-            consoleAccountMapper.save(account);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            throw new RuntimeException(e.getMessage());
-        }
-
-        return ResultUtil.success();
-    }
-
-    @Override
     public Result login(AccountDTO accountDTO) {
 
         Account account = consoleAccountMapper.getByUserName(accountDTO.getUsername());

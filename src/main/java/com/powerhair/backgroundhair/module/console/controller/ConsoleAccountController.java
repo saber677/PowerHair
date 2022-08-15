@@ -18,18 +18,6 @@ public class ConsoleAccountController {
     @Autowired
     ConsoleAccountService consoleAccountService;
 
-
-    @PostMapping(value = "/register")
-    @ApiOperation(value = "注册账号")
-    public Result register(@RequestBody AccountDTO registerDTO) {
-        try {
-            consoleAccountService.register(registerDTO);
-        } catch (Exception e) {
-            return ResultUtil.error(e.getMessage());
-        }
-        return ResultUtil.success();
-    }
-
     @PostMapping(value = "login")
     @ApiOperation(value = "登录账号")
     public Result login(@RequestBody AccountDTO accountDTO) {
