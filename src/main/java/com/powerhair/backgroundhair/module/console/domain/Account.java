@@ -11,6 +11,8 @@ public class Account implements Serializable {
 
     private Long id;
 
+    private Long storeId;
+
     private String username;
 
     private String password;

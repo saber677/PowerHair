@@ -32,17 +32,16 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
         try {
             Account account = new Account();
             account.setId(UUIDUtil.getPrimaryKey());
+            account.setStoreId(accountDTO.getStoreId());
             account.setUsername(accountDTO.getUsername());
-            account.setPassword(accountDTO.getPassword());
+            account.setPassword(MD5Util.encryptKey(accountDTO.getPassword()));
             account.setCreateTime(new Date());
             account.setUpdateTime(new Date());
-
             consoleAccountMapper.save(account);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new RuntimeException(e.getMessage());
         }
-
         return ResultUtil.success();
     }
 

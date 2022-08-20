@@ -46,9 +46,8 @@ public class ConsoleAccountController {
     }
 
     @PostMapping
-    @ApiOperation(value = "添加账号/注册")
+    @ApiOperation(value = "添加账号")
     public Result createAccount(@RequestBody AccountDTO accountDTO) {
-        return ResultUtil.success();
-
+        return consoleAccountService.createAccount(accountDTO);
     }
 }
