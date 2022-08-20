@@ -64,6 +64,6 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             throw new RuntimeException("密码错误");
         }
 
-        return ResultUtil.success("登录成功");
+        return ResultUtil.success();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RestController
@@ -24,8 +25,8 @@ public class TestController {
     ConsoleAccountMapper accountMapper;
 
     @GetMapping(value = "/hello")
-    public Result hello() {
-
+    public Result hello(HttpServletRequest request) {
+        System.out.println(request.getSession().getAttribute("userLoginStatus"));
         return ResultUtil.success("hello world");
     }
 

@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface GatewayService {
 
-    void setResponseHeader(HttpServletRequest request, HttpServletResponse response);
+    void setResponseParam(HttpServletRequest request, HttpServletResponse response,Boolean isLogin);
 
 }

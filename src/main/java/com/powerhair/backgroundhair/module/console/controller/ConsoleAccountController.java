@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@RestController
+@RestController(value = "/account")
 @Api(tags = "账号相关的操作")
 public class ConsoleAccountController {
 
@@ -38,14 +38,15 @@ public class ConsoleAccountController {
         try {
             result = consoleAccountService.login(accountDTO);
             //设置session
-            gatewayService.setResponseHeader(request,response);
+            gatewayService.setResponseParam(request, response,true);
         } catch (Exception e) {
+            gatewayService.setResponseParam(request,response,false);
             return ResultUtil.error(e.getMessage());
         }
         return result;
     }
 
-    @PostMapping
+    @PostMapping("/")
     @ApiOperation(value = "添加账号")
     public Result createAccount(@RequestBody AccountDTO accountDTO) {
         return consoleAccountService.createAccount(accountDTO);

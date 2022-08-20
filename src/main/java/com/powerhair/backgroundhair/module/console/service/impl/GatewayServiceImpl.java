@@ -1,6 +1,7 @@
 package com.powerhair.backgroundhair.module.console.service.impl;
 
 import com.powerhair.backgroundhair.module.console.service.GatewayService;
+import com.powerhair.backgroundhair.utils.constant.ConstantSession;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,14 +11,17 @@ import javax.servlet.http.HttpSession;
 @Service
 public class GatewayServiceImpl implements GatewayService {
 
-    public static final Integer SESSION_TIME_OUT = 0;
-    public static final String JSESSION = "cookie";
-
     @Override
-    public void setResponseHeader(HttpServletRequest request, HttpServletResponse response) {
+    public void setResponseParam(HttpServletRequest request, HttpServletResponse response,Boolean isLogin) {
         HttpSession session = request.getSession();
-        session.setMaxInactiveInterval(SESSION_TIME_OUT);
-        String sessionId = session.getId();
-        response.setHeader(JSESSION, sessionId);
+        //设置session
+        setSessionAttribute(session,isLogin);
+        //设置响应头
+        response.setHeader(ConstantSession.JSESSIONID, session.getId());
+    }
+
+    private void setSessionAttribute(HttpSession session,Boolean isLogin) {
+        session.setAttribute(ConstantSession.USER_LOGIN_STATUS, isLogin);
+        session.setMaxInactiveInterval(ConstantSession.SESSION_TIME_OUT);
     }
 }
