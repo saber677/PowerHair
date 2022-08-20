@@ -11,7 +11,7 @@ public interface ConsoleAccountService {
      * @param accountDTO
      * @return
      */
-    Result save(AccountDTO accountDTO);
+    Result createAccount(AccountDTO accountDTO);
 
     /**
      * 登录

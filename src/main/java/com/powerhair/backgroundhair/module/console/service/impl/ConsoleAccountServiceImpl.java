@@ -4,30 +4,30 @@ import com.powerhair.backgroundhair.module.console.domain.Account;
 import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
 import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
 import com.powerhair.backgroundhair.module.console.service.ConsoleAccountService;
+import com.powerhair.backgroundhair.module.console.service.GatewayService;
 import com.powerhair.backgroundhair.utils.entity.Result;
+import com.powerhair.backgroundhair.utils.util.MD5Util;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
 import com.powerhair.backgroundhair.utils.util.UUIDUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.security.provider.MD5;
-
 import java.util.Date;
 
 @Service
 public class ConsoleAccountServiceImpl implements ConsoleAccountService {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsoleAccountServiceImpl.class);
+
     @Autowired
-    ConsoleAccountMapper consoleAccountMapper;
+    private ConsoleAccountMapper consoleAccountMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result save(AccountDTO accountDTO) {
+    public Result createAccount(AccountDTO accountDTO) {
 
         try {
             Account account = new Account();
@@ -56,9 +56,10 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             throw new RuntimeException(e.getMessage());
         }
 
-        if (!StringUtils.equals(account.getPassword(), accountDTO.getPassword())) {
+        if (!StringUtils.equals(account.getPassword(), MD5Util.encryptKey(accountDTO.getPassword()))) {
             throw new RuntimeException("密码错误");
         }
-        return ResultUtil.success();
+
+        return ResultUtil.success("登录成功");
     }
 }
