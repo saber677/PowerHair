@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
+import java.util.Objects;
 
 @Service
 public class ConsoleAccountServiceImpl implements ConsoleAccountService {
@@ -53,6 +54,10 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             account = consoleAccountMapper.getByUserName(accountDTO.getUsername());
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
+        }
+
+        if (Objects.isNull(account)) {
+            throw new RuntimeException("账号不存在");
         }
 
         if (!StringUtils.equals(account.getPassword(), MD5Util.encryptKey(accountDTO.getPassword()))) {
