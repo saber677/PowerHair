@@ -14,12 +14,17 @@ public class GatewayServiceImpl implements GatewayService {
     @Override
     public void setResponseParam(HttpServletRequest request, HttpServletResponse response,Boolean isLogin) {
         HttpSession session = request.getSession();
-        //设置session
         setSessionAttribute(session,isLogin);
         //设置响应头
         response.setHeader(ConstantSession.JSESSIONID, session.getId());
     }
 
+    /**
+     * 设置session
+     *
+     * @param session
+     * @param isLogin
+     */
     private void setSessionAttribute(HttpSession session,Boolean isLogin) {
         session.setAttribute(ConstantSession.USER_LOGIN_STATUS, isLogin);
         session.setMaxInactiveInterval(ConstantSession.SESSION_TIME_OUT);
