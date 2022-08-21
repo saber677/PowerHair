@@ -1,6 +1,6 @@
-package com.powerhair.backgroundhair.module.console.service.impl;
+package com.powerhair.backgroundhair.utils.util;
 
-import com.powerhair.backgroundhair.module.console.service.GatewayService;
+import com.powerhair.backgroundhair.utils.util.GatewayService;
 import com.powerhair.backgroundhair.utils.constant.ConstantSession;
 import org.springframework.stereotype.Service;
 

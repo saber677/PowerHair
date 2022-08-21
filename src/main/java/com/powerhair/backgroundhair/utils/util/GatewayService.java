@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.module.console.service;
+package com.powerhair.backgroundhair.utils.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

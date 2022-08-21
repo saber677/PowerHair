@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@ApiModel
+@ApiModel(value = "登陆、添加账号需要的参数")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

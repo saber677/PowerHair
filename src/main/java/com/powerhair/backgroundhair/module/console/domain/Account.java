@@ -17,6 +17,8 @@ public class Account implements Serializable {
 
     private String password;
 
+    private String name;
+
     private Date createTime;
 
     private Long creatorId;

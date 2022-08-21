@@ -7,6 +7,7 @@
         <result property="storeId" column="store_id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
+        <result property="name" column="name"/>
         <result property="createTime" column="create_time"/>
         <result property="creatorId" column="creator_id"/>
         <result property="updateTime" column="update_time"/>
@@ -14,7 +15,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,store_id,username,password,create_time,creator_id,update_time,updator_id
+        id,store_id,username,password,name,create_time,creator_id,update_time,updator_id
     </sql>
 
     <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -33,6 +34,7 @@
         #{storeId},
         #{username},
         #{password},
+        #{name},
         #{createTime},
         #{creatorId},
         #{updateTime},

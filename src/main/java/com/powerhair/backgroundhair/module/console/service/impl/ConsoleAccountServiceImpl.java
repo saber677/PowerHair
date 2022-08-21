@@ -4,7 +4,6 @@ import com.powerhair.backgroundhair.module.console.domain.Account;
 import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
 import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
 import com.powerhair.backgroundhair.module.console.service.ConsoleAccountService;
-import com.powerhair.backgroundhair.module.console.service.GatewayService;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.MD5Util;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
@@ -36,6 +35,7 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             account.setStoreId(accountDTO.getStoreId());
             account.setUsername(accountDTO.getUsername());
             account.setPassword(MD5Util.encryptKey(accountDTO.getPassword()));
+            account.setName(accountDTO.getName());
             account.setCreateTime(new Date());
             account.setUpdateTime(new Date());
             consoleAccountMapper.save(account);
