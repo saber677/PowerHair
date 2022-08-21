@@ -2,8 +2,8 @@ package com.powerhair.backgroundhair.module.console.controller;
 
 import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
 import com.powerhair.backgroundhair.module.console.service.ConsoleAccountService;
-import com.powerhair.backgroundhair.utils.util.GatewayService;
 import com.powerhair.backgroundhair.utils.entity.Result;
+import com.powerhair.backgroundhair.utils.util.GatewayUtil;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,8 +21,6 @@ public class ConsoleAccountController {
 
     @Autowired
     private ConsoleAccountService consoleAccountService;
-    @Autowired
-    private GatewayService gatewayService;
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录账号")
@@ -35,9 +33,9 @@ public class ConsoleAccountController {
         try {
             result = consoleAccountService.login(accountDTO);
             //设置session
-            gatewayService.setResponseParam(request, response,true);
+            GatewayUtil.setResponseParam(request, response,true);
         } catch (Exception e) {
-            gatewayService.setResponseParam(request,response,false);
+            GatewayUtil.setResponseParam(request,response,false);
             return ResultUtil.error(e.getMessage());
         }
         return result;
