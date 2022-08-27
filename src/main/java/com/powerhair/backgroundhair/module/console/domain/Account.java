@@ -5,8 +5,10 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account implements Serializable {
 
     private Long id;

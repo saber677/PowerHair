@@ -17,7 +17,7 @@
         id,username,password,name,create_time,creator_id,update_time,updator_id
     </sql>
 
-    <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM account

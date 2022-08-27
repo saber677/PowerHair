@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 
 public class LoginInterceptor implements HandlerInterceptor {
+
     private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
     @Override

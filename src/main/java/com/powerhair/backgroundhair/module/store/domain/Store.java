@@ -4,13 +4,17 @@ import lombok.*;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Store {
 
     private Long id;
 
-    private String name;
+    private String storeName;
+
+    private Integer memberCount;
 
     private Date createTime;
 

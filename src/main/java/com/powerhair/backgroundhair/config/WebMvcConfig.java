@@ -12,7 +12,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         String[] excludePatterns = new String[]{"/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**",
-                "/api", "/api-docs", "/api-docs/**", "/doc.html/**","/login"};
+                "/api", "/api-docs", "/api-docs/**", "/doc.html/**","/account/login"};
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns(excludePatterns);
