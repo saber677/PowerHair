@@ -1,6 +1,7 @@
 package com.powerhair.backgroundhair.module.store.controller;
 
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
+import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
@@ -26,9 +27,8 @@ public class StoreController {
     }
 
     @GetMapping(value = "/list")
-    @ApiModelProperty(value = "获取店铺列表")
-    public Result listByAccountId(@RequestParam(value = "accountId") Long accountId) {
-
-        return ResultUtil.success();
+    @ApiOperation(value = "获取店铺列表")
+    public Result<StoreVO> listByAccountId(@RequestParam(value = "accountId") Long accountId) {
+        return ResultUtil.success(storeService.listByAccountId(accountId));
     }
 }

@@ -12,7 +12,7 @@ public interface ConsoleAccountMapper {
      *
      * @return
      */
-    Account get(@Param(value = "id") Long id);
+    Account getById(@Param(value = "accountId") Long id);
 
     /**
      * 插入account对象

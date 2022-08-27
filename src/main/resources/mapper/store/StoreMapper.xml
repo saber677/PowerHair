@@ -13,14 +13,21 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,store_name,member_count,create_time,creator_id,update_time,updator_id
+        id
+        ,store_name,member_count,create_time,creator_id,update_time,updator_id
     </sql>
 
     <insert id="save" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">
-        insert into store
+        INSERT INTO store
         (<include refid="Base_Column_List"/>)
-        values (#{id}, #{storeName}, #{memberCount}, #{createTime}, #{creatorId}, #{updateTime}, #{updatorId});
+        VALUES (#{id}, #{storeName}, #{memberCount}, #{createTime}, #{creatorId}, #{updateTime}, #{updatorId});
     </insert>
+
+    <select id="listStore" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM store
+    </select>
 
 
 </mapper>
