@@ -4,7 +4,6 @@
 
     <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.console.domain.Account">
         <id property="id" column="id"/>
-        <result property="storeId" column="store_id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="name" column="name"/>
@@ -15,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,store_id,username,password,name,create_time,creator_id,update_time,updator_id
+        id,username,password,name,create_time,creator_id,update_time,updator_id
     </sql>
 
     <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -31,7 +30,6 @@
         )
         VALUES(
         #{id},
-        #{storeId},
         #{username},
         #{password},
         #{name},

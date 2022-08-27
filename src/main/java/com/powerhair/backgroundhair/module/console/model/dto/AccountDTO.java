@@ -20,9 +20,6 @@ public class AccountDTO {
     @ApiModelProperty(value = "注册密码")
     private String password;
 
-    @ApiModelProperty(value = "店铺ID")
-    private Long storeId;
-
     @ApiModelProperty(value = "用户姓名")
     private String name;
 }

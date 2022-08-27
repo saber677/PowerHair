@@ -32,7 +32,6 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
         try {
             Account account = new Account();
             account.setId(UUIDUtil.getPrimaryKey());
-            account.setStoreId(accountDTO.getStoreId());
             account.setUsername(accountDTO.getUsername());
             account.setPassword(MD5Util.encryptKey(accountDTO.getPassword()));
             account.setName(accountDTO.getName());
