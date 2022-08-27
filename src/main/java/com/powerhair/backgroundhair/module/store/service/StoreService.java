@@ -10,7 +10,7 @@ public interface StoreService {
 
     int createStore(StoreCreateDTO storeCreateDTO);
 
-    List<Store> listByMemberId(@Param("storeId") Long id);
+    List<Store> listByAccountId(@Param("accountId") Long id);
 
     Store getById(@Param("storeId") Long id);
 

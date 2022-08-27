@@ -43,7 +43,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> listByMemberId(Long id) {
+    public List<Store> listByAccountId(Long id) {
         return null;
     }
 

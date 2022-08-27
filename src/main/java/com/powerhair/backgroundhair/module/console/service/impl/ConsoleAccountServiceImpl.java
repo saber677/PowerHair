@@ -31,13 +31,14 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
 
         try {
             if (!Objects.isNull(consoleAccountMapper.getByUserName(accountDTO.getUsername()))){
-                throw new RuntimeException("已经存在相同的账号，请更换别的账号名");
+                throw new RuntimeException("已经存在相同的账号名称，请更换别的账号名");
             }
             Account account = new Account();
             account.setId(UUIDUtil.getPrimaryKey());
             account.setUsername(accountDTO.getUsername());
             account.setPassword(MD5Util.encryptKey(accountDTO.getPassword()));
-            account.setName(accountDTO.getName());
+            account.setAuth(accountDTO.getAuth());
+            account.setDescription(accountDTO.getDescription());
             account.setCreateTime(new Date());
             account.setUpdateTime(new Date());
             consoleAccountMapper.save(account);
