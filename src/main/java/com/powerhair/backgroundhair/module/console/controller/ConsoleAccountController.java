@@ -44,6 +44,10 @@ public class ConsoleAccountController {
     @PostMapping("/")
     @ApiOperation(value = "添加账号")
     public Result createAccount(@RequestBody AccountDTO accountDTO) {
-        return consoleAccountService.createAccount(accountDTO);
+        try {
+            return consoleAccountService.createAccount(accountDTO);
+        } catch (Exception e) {
+            return ResultUtil.error(e.getMessage());
+        }
     }
 }

@@ -30,6 +30,9 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
     public Result createAccount(AccountDTO accountDTO) {
 
         try {
+            if (!Objects.isNull(consoleAccountMapper.getByUserName(accountDTO.getUsername()))){
+                throw new RuntimeException("已经存在相同的账号，请更换别的账号名");
+            }
             Account account = new Account();
             account.setId(UUIDUtil.getPrimaryKey());
             account.setUsername(accountDTO.getUsername());
