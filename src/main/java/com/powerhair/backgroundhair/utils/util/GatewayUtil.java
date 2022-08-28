@@ -1,5 +1,5 @@
 package com.powerhair.backgroundhair.utils.util;
-import com.powerhair.backgroundhair.utils.constant.ConstantSession;
+import com.powerhair.backgroundhair.utils.constant.SessionConstant;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +20,7 @@ public class GatewayUtil {
         HttpSession session = request.getSession();
         setSessionAttribute(session, isLogin);
         //设置响应头
-        response.setHeader(ConstantSession.JSESSIONID, session.getId());
+        response.setHeader(SessionConstant.JSESSIONID, session.getId());
     }
 
     /**
@@ -30,7 +30,7 @@ public class GatewayUtil {
      * @param isLogin
      */
     private static void setSessionAttribute(HttpSession session, Boolean isLogin) {
-        session.setAttribute(ConstantSession.USER_LOGIN_STATUS, isLogin);
-        session.setMaxInactiveInterval(ConstantSession.SESSION_TIME_OUT);
+        session.setAttribute(SessionConstant.USER_LOGIN_STATUS, isLogin);
+        session.setMaxInactiveInterval(SessionConstant.SESSION_TIME_OUT);
     }
 }

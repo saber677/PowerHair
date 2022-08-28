@@ -1,7 +1,9 @@
 package com.powerhair.backgroundhair.intercepter;
 
-import com.powerhair.backgroundhair.module.console.service.impl.ConsoleAccountServiceImpl;
-import com.powerhair.backgroundhair.utils.constant.ConstantSession;
+import com.powerhair.backgroundhair.utils.constant.SessionConstant;
+import com.powerhair.backgroundhair.utils.util.GatewayUtil;
+import com.powerhair.backgroundhair.utils.util.UserContextUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,9 +19,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Boolean isLogin = (Boolean) request.getSession().getAttribute(ConstantSession.USER_LOGIN_STATUS);
-        logger.info("开始拦截,是否通过拦截:{}",(Objects.isNull(isLogin) && isLogin));
-        return (!Objects.isNull(isLogin) && isLogin) ? true : false;
+//        Boolean isLogin = (Boolean) request.getSession().getAttribute(SessionConstant.USER_LOGIN_STATUS);
+//        logger.info("开始拦截,是否通过拦截:{}", (!Objects.isNull(isLogin) && isLogin));
+        String accountId = request.getHeader(SessionConstant.USER_AUTH);
+        if (StringUtils.isEmpty(accountId)) {
+            throw new RuntimeException("用户未登录");
+        }
+        UserContextUtil.setAccountId(Long.parseLong(accountId));
+        return true;
     }
 
     @Override
@@ -29,7 +36,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        UserContextUtil.clear();
     }
 
 }
