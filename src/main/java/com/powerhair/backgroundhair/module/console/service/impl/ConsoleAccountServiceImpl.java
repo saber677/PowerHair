@@ -1,5 +1,6 @@
 package com.powerhair.backgroundhair.module.console.service.impl;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.powerhair.backgroundhair.module.console.domain.Account;
 import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
 import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
@@ -8,12 +9,15 @@ import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.MD5Util;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
 import com.powerhair.backgroundhair.utils.util.UUIDUtil;
+import io.swagger.util.Json;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -30,7 +34,7 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
     public Result createAccount(AccountDTO accountDTO) {
 
         try {
-            if (!Objects.isNull(consoleAccountMapper.getByUserName(accountDTO.getUsername()))){
+            if (!Objects.isNull(consoleAccountMapper.getByUserName(accountDTO.getUsername()))) {
                 throw new RuntimeException("已经存在相同的账号名称，请更换别的账号名");
             }
             Account account = new Account();
@@ -67,6 +71,6 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             throw new RuntimeException("密码错误");
         }
 
-        return ResultUtil.success(account.getId());
+        return ResultUtil.success(new ArrayList().add(account.getId()));
     }
 }
