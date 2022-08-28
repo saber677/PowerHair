@@ -27,7 +27,7 @@ public class ConsoleAccountController {
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录账号")
-    public Result login(@RequestBody AccountDTO accountDTO,
+    public Result<SessionVO> login(@RequestBody AccountDTO accountDTO,
                                    HttpServletRequest request,
                                    HttpServletResponse response) {
 
@@ -36,9 +36,9 @@ public class ConsoleAccountController {
         try {
             result = consoleAccountService.login(accountDTO);
             //设置session
-            GatewayUtil.setResponseParam(request, response,true);
+            GatewayUtil.setResponseParam(request, response,true,result);
         } catch (Exception e) {
-            GatewayUtil.setResponseParam(request,response,false);
+//            GatewayUtil.setResponseParam(request,response,false,result);
             return ResultUtil.error(e.getMessage());
         }
         return result;

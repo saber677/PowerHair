@@ -55,7 +55,7 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
     }
 
     @Override
-    public Result login(AccountDTO accountDTO) {
+    public Result<SessionVO> login(AccountDTO accountDTO) {
 
         Account account = null;
         try {
@@ -72,7 +72,7 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
             throw new RuntimeException("密码错误");
         }
 
-        SessionVO build = SessionVO.builder().token(String.valueOf(account.getId())).build();
-        return ResultUtil.success(build);
+        SessionVO sessionVO = SessionVO.builder().token(String.valueOf(account.getId())).build();
+        return ResultUtil.success(sessionVO);
     }
 }

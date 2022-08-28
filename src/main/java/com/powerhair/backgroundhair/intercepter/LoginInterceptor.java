@@ -1,5 +1,6 @@
 package com.powerhair.backgroundhair.intercepter;
 
+import com.powerhair.backgroundhair.module.console.model.vo.SessionVO;
 import com.powerhair.backgroundhair.utils.constant.SessionConstant;
 import com.powerhair.backgroundhair.utils.util.GatewayUtil;
 import com.powerhair.backgroundhair.utils.util.UserContextUtil;
@@ -22,11 +23,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        Boolean isLogin = (Boolean) request.getSession().getAttribute(SessionConstant.USER_LOGIN_STATUS);
 //        logger.info("开始拦截,是否通过拦截:{}", (!Objects.isNull(isLogin) && isLogin));
         String accountId = request.getHeader(SessionConstant.USER_AUTH);
-        if (StringUtils.isEmpty(accountId)) {
+        String token = request.getSession().getAttribute(SessionConstant.USER_AUTH).toString();
+        if (StringUtils.isNotEmpty(accountId) && StringUtils.equals(accountId, token)) {
+            UserContextUtil.setAccountId(Long.parseLong(accountId));
+            return true;
+        } else {
             throw new RuntimeException("用户未登录");
         }
-        UserContextUtil.setAccountId(Long.parseLong(accountId));
-        return true;
     }
 
     @Override
