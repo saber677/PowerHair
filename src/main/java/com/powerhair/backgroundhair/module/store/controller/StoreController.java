@@ -23,6 +23,8 @@ public class StoreController {
     @PostMapping(value = "/")
     @ApiOperation(value = "创建店铺")
     public Result createStore(@RequestBody StoreCreateDTO storeCreateDTO) {
+        Long accountId = UserContextUtil.getAccountId();
+        storeCreateDTO.setAccountId(accountId);
         storeService.createStore(storeCreateDTO);
         return ResultUtil.success();
     }

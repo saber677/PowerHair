@@ -17,4 +17,7 @@ public class StoreCreateDTO {
     @ApiModelProperty(value = "店铺名字")
     private String storeName;
 
+    @ApiModelProperty(value = "账号ID")
+    private Long accountId;
+
 }

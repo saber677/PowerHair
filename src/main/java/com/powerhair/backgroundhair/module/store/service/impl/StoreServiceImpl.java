@@ -39,9 +39,9 @@ public class StoreServiceImpl implements StoreService {
                     .storeName(storeCreateDTO.getStoreName())
                     .memberCount(0)
                     .createTime(new Date())
-                    //                .creatorId()
+                    .creatorId(storeCreateDTO.getAccountId())
                     .updateTime(new Date())
-                    //                .updatorId()
+                    .updatorId(storeCreateDTO.getAccountId())
                     .build();
             return storeMapper.save(store);
         } catch (Exception e) {
