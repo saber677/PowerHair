@@ -5,6 +5,7 @@ import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.ResultUtil;
+import com.powerhair.backgroundhair.utils.util.UserContextUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +29,7 @@ public class StoreController {
 
     @GetMapping(value = "/list")
     @ApiOperation(value = "获取店铺列表")
-    public Result<StoreVO> listByAccountId(@RequestParam(value = "accountId") Long accountId) {
-        return ResultUtil.success(storeService.listByAccountId(accountId));
+    public Result<StoreVO> listByAccountId() {
+        return ResultUtil.success(storeService.listByAccountId(UserContextUtil.getAccountId()));
     }
 }
