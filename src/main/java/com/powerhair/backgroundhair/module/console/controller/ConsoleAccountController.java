@@ -1,6 +1,7 @@
 package com.powerhair.backgroundhair.module.console.controller;
 
 import com.powerhair.backgroundhair.module.console.model.dto.AccountDTO;
+import com.powerhair.backgroundhair.module.console.model.vo.SessionVO;
 import com.powerhair.backgroundhair.module.console.service.ConsoleAccountService;
 import com.powerhair.backgroundhair.utils.entity.Result;
 import com.powerhair.backgroundhair.utils.util.GatewayUtil;
@@ -27,8 +28,8 @@ public class ConsoleAccountController {
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录账号")
     public Result login(@RequestBody AccountDTO accountDTO,
-                        HttpServletRequest request,
-                        HttpServletResponse response) {
+                                   HttpServletRequest request,
+                                   HttpServletResponse response) {
 
         Result result = null;
 
