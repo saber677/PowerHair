@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.store.domain.Store">
         <id property="id" column="id"/>
-        <result property="storeName" column="name"/>
+        <result property="storeName" column="store_name"/>
         <result property="memberCount" column="member_count"/>
         <result property="createTime" column="create_time"/>
         <result property="creatorId" column="creator_id"/>
