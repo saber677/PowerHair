@@ -7,6 +7,7 @@ import com.powerhair.backgroundhair.module.store.StoreConvert;
 import com.powerhair.backgroundhair.module.store.domain.Store;
 import com.powerhair.backgroundhair.module.store.mapper.StoreMapper;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
+import com.powerhair.backgroundhair.module.store.model.dto.StoreUpdateDTO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.utils.util.UUIDUtil;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -62,5 +64,27 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store getById(Long id) {
         return null;
+    }
+
+    @Override
+    public int updateStore(StoreUpdateDTO storeUpdateDTO) {
+
+        try {
+            Store store = Store.builder()
+                    .id(storeUpdateDTO.getId())
+                    .storeName(storeUpdateDTO.getStoreName())
+                    .updateTime(new Date())
+                    .updatorId(storeUpdateDTO.getAccountId())
+                    .build();
+            return storeMapper.update(store);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int deleteStore(Long storeId) {
+        return storeMapper.delete(storeId);
     }
 }

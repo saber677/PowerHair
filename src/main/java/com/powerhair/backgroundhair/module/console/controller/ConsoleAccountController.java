@@ -36,10 +36,10 @@ public class ConsoleAccountController {
         try {
             result = consoleAccountService.login(accountDTO);
             //设置session
-            GatewayUtil.setResponseParam(request, response,true,result);
+            GatewayUtil.setResponseParam(request, response,null,result);
         } catch (Exception e) {
 //            GatewayUtil.setResponseParam(request,response,false,result);
-            return ResultUtil.error(e.getMessage());
+            return ResultUtil.error("登录异常，请联系管理员");
         }
         return result;
     }

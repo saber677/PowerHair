@@ -29,5 +29,17 @@
         FROM store
     </select>
 
+    <update id="update" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">
+        UPDATE store
+        SET store_name = #{storeName},
+            update_time = #{updateTime},
+            updator_id = #{updatorId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM store
+        WHERE id = #{storeId}
+    </delete>
 
 </mapper>
