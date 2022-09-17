@@ -5,6 +5,12 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ConsoleAccountMapper {
 
+    /**
+     * 通过账号名称获取账号信息
+     *
+     * @param username
+     * @return
+     */
     Account getByUserName(@Param(value = "username") String username);
 
     /**

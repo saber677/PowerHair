@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface StoreMapper {
 
+    Store get(@Param("storeId") Long storeId);
+
     int delete(@Param("storeId") Long storeId);
 
     int update(Store store);

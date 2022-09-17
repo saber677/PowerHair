@@ -16,9 +16,9 @@ public interface StoreService {
 
     int createStore(StoreCreateDTO storeCreateDTO);
 
-    List<StoreVO> listByAccountId(@Param("accountId") Long accountId);
+    List<StoreVO> listByAccountId(Long accountId);
 
-    Store getById(@Param("storeId") Long id);
+    Store getById(Long storeId);
 
 
 }

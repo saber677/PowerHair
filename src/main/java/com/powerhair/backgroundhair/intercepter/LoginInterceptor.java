@@ -1,18 +1,14 @@
 package com.powerhair.backgroundhair.intercepter;
 
-import com.powerhair.backgroundhair.module.console.model.vo.SessionVO;
 import com.powerhair.backgroundhair.utils.constant.SessionConstant;
-import com.powerhair.backgroundhair.utils.util.GatewayUtil;
 import com.powerhair.backgroundhair.utils.util.UserContextUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Objects;
 
 public class LoginInterceptor implements HandlerInterceptor {
 

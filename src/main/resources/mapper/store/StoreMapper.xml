@@ -31,15 +31,23 @@
 
     <update id="update" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">
         UPDATE store
-        SET store_name = #{storeName},
+        SET store_name  = #{storeName},
             update_time = #{updateTime},
-            updator_id = #{updatorId}
+            updator_id  = #{updatorId}
         WHERE id = #{id}
     </update>
 
     <delete id="delete" parameterType="java.lang.Long">
-        DELETE FROM store
+        DELETE
+        FROM store
         WHERE id = #{storeId}
     </delete>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM store
+        WHERE id = #{storeId};
+    </select>
 
 </mapper>

@@ -61,6 +61,7 @@ public class ConsoleAccountServiceImpl implements ConsoleAccountService {
         try {
             account = consoleAccountMapper.getByUserName(accountDTO.getUsername());
         } catch (Exception e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e.getMessage());
         }
 
