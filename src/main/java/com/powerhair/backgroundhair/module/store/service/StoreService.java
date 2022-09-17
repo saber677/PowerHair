@@ -18,7 +18,7 @@ public interface StoreService {
 
     List<StoreVO> listByAccountId(Long accountId);
 
-    Store getById(Long storeId);
+    Store getStoreDetail(Long storeId);
 
 
 }

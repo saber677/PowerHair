@@ -57,7 +57,7 @@ public class StoreController {
     @ApiOperation(value = "获取店铺详情")
     @GetMapping(value = "/{storeId}")
     public Result getStoreDetail(@ApiParam(value = "店铺ID") @PathVariable("storeId") Long storeId) {
-        return ResultUtil.success(storeService.getById(storeId));
+        return ResultUtil.success(storeService.getStoreDetail(storeId));
     }
 
 }

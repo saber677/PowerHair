@@ -62,7 +62,9 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Store getById(Long storeId) {
+    public Store getStoreDetail(Long storeId) {
+        Store store = storeMapper.get(storeId);
+
         return storeMapper.get(storeId);
     }
 
