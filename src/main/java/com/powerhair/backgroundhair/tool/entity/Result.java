@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.utils.entity;
+package com.powerhair.backgroundhair.tool.entity;
 
 
 public class Result<T> {

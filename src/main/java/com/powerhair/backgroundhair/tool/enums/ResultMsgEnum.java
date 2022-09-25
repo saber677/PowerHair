@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.utils.enums;
+package com.powerhair.backgroundhair.tool.enums;
 
 
 public enum ResultMsgEnum {

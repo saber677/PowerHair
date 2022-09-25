@@ -1,8 +1,8 @@
-package com.powerhair.backgroundhair.utils.util;
+package com.powerhair.backgroundhair.tool.util;
 
-import com.powerhair.backgroundhair.utils.entity.Result;
-import com.powerhair.backgroundhair.utils.enums.ResultCodeEnum;
-import com.powerhair.backgroundhair.utils.enums.ResultMsgEnum;
+import com.powerhair.backgroundhair.tool.entity.Result;
+import com.powerhair.backgroundhair.tool.enums.ResultCodeEnum;
+import com.powerhair.backgroundhair.tool.enums.ResultMsgEnum;
 import org.apache.commons.lang3.StringUtils;
 
 public class ResultUtil {

@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.utils.constant;
+package com.powerhair.backgroundhair.tool.constant;
 
 
 public class SessionConstant {

@@ -1,7 +1,4 @@
-package com.powerhair.backgroundhair.utils.enums;
-
-import lombok.Data;
-import lombok.Getter;
+package com.powerhair.backgroundhair.tool.enums;
 
 public enum ResultCodeEnum {
 

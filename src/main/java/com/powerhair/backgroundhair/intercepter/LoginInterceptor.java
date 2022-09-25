@@ -1,7 +1,7 @@
 package com.powerhair.backgroundhair.intercepter;
 
-import com.powerhair.backgroundhair.utils.constant.SessionConstant;
-import com.powerhair.backgroundhair.utils.util.UserContextUtil;
+import com.powerhair.backgroundhair.tool.constant.SessionConstant;
+import com.powerhair.backgroundhair.tool.util.UserContextUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

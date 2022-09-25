@@ -1,8 +1,8 @@
-package com.powerhair.backgroundhair.utils.util;
+package com.powerhair.backgroundhair.tool.util;
 
 import com.powerhair.backgroundhair.module.console.model.vo.SessionVO;
-import com.powerhair.backgroundhair.utils.constant.SessionConstant;
-import com.powerhair.backgroundhair.utils.entity.Result;
+import com.powerhair.backgroundhair.tool.constant.SessionConstant;
+import com.powerhair.backgroundhair.tool.entity.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

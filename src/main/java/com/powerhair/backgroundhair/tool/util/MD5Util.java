@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.utils.util;
+package com.powerhair.backgroundhair.tool.util;
 import org.springframework.util.DigestUtils;
 import java.nio.charset.StandardCharsets;
 

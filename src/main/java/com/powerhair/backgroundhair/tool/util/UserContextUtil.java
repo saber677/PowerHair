@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.utils.util;
+package com.powerhair.backgroundhair.tool.util;
 
 import lombok.Data;
 
