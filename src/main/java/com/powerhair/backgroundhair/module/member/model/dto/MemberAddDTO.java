@@ -20,9 +20,7 @@ public class MemberAddDTO {
     @ApiModelProperty(value = "成员职位")
     private MemberPositionEnum memberPosition;
 
-    @ApiModelProperty(value = "成员状态")
-    private MemberStatusEnum status;
+    @ApiModelProperty(value = "店铺ID")
+    private Long storeId;
 
-
-    private Date createTime;
 }

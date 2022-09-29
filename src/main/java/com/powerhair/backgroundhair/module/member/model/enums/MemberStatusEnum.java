@@ -17,15 +17,11 @@ public enum MemberStatusEnum {
         this.desc = desc;
     }
 
-    public static Integer getByObj(MemberStatusEnum memberStatus) {
+    public Integer getId() {
+        return id;
+    }
 
-        if (!Objects.isNull(memberStatus)) {
-            for (MemberStatusEnum value : MemberStatusEnum.values()) {
-                if (Objects.equals(memberStatus, value)) {
-                    return value.id;
-                }
-            }
-        }
-        return null;
+    public String getDesc() {
+        return desc;
     }
 }

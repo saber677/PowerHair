@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.powerhair.backgroundhair.module.member.mapper.MemberMapper">
 
+    <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.member.domain.Member">
+        <id property="id" column="id"/>
+        <result property="storeId" column="store_id"/>
+        <result property="memberName" column="member_name"/>
+        <result property="memberPosition" column="member_position"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        store_id,member_name,member_position,create_time
+    </sql>
+
+    <insert id="save" parameterType="com.powerhair.backgroundhair.module.member.domain.Member">
+        INSERT INTO member
+        (<include refid="Base_Column_List"/>)
+        VALUES (
+        #{id},
+        #{storeId},
+        #{memberName},
+        #{memberPosition},
+        #{createTime});
+    </insert>
 </mapper>

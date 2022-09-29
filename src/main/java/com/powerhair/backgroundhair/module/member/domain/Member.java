@@ -15,11 +15,11 @@ public class Member {
 
     private Long id;
 
+    private Long storeId;
+
     private String memberName;
 
     private Integer memberPosition;
-
-    private Integer status;
 
     private Date createTime;
 

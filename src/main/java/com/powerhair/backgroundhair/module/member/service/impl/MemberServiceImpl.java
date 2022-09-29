@@ -5,6 +5,7 @@ import com.powerhair.backgroundhair.module.member.mapper.MemberMapper;
 import com.powerhair.backgroundhair.module.member.model.dto.MemberAddDTO;
 import com.powerhair.backgroundhair.module.member.model.enums.MemberPositionEnum;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
+import com.powerhair.backgroundhair.tool.util.IdEnumUtil;
 import com.powerhair.backgroundhair.tool.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,13 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void save(MemberAddDTO memberAddDTO) {
-        Member member = new Member();
-        member.setId(UUIDUtil.getPrimaryKey());
-        member.setMemberName(memberAddDTO.getMemberName());
-        member.setMemberPosition(MemberPositionEnum.getByObj(memberAddDTO.getMemberPosition()));
-        member.setStatus(memberAddDTO.getStatus());
-        member.setCreateTime(new Date());
+        Member member = Member.builder()
+                .id(UUIDUtil.getPrimaryKey())
+                .storeId(memberAddDTO.getStoreId())
+                .memberName(memberAddDTO.getMemberName())
+                .memberPosition(IdEnumUtil.getByObj(memberAddDTO.getMemberPosition()))
+                .createTime(new Date())
+                .build();
         memberMapper.save(member);
     }
 }
