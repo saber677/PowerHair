@@ -31,5 +31,5 @@ public class StoreDetailVO {
     private Long creatorId;
 
     @ApiModelProperty(value = "店铺成员信息")
-    private List<MemberVO> storeMembers;
+    private List<Member> storeMembers;
 }

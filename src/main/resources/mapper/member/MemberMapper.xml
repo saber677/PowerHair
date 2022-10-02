@@ -31,4 +31,11 @@
         FROM member
         WHERE store_id = #{storeId}
     </select>
+
+    <select id="listByStoreId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM member
+        WHERE store_id = #{storeId}
+    </select>
 </mapper>

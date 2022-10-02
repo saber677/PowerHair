@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -33,5 +34,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Integer countByStoreId(Long storeId) {
         return memberMapper.countByStoreId(storeId);
+    }
+
+    @Override
+    public List<Member> listByStoreId(Long storeId) {
+        return memberMapper.listByStoreId(storeId);
     }
 }

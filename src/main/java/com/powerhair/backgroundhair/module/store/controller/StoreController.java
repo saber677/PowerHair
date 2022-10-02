@@ -2,6 +2,7 @@ package com.powerhair.backgroundhair.module.store.controller;
 
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreUpdateDTO;
+import com.powerhair.backgroundhair.module.store.model.vo.StoreDetailVO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.tool.entity.Result;
@@ -53,7 +54,7 @@ public class StoreController {
 
     @ApiOperation(value = "获取店铺详情")
     @GetMapping(value = "/{storeId}")
-    public Result getStoreDetail(@ApiParam(value = "店铺ID") @PathVariable("storeId") Long storeId) {
+    public Result<StoreDetailVO> getStoreDetail(@ApiParam(value = "店铺ID") @PathVariable("storeId") Long storeId) {
         return ResultUtil.success(storeService.getStoreDetail(storeId));
     }
 

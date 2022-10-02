@@ -3,11 +3,13 @@ package com.powerhair.backgroundhair.module.store.service.impl;
 import com.google.common.collect.Lists;
 import com.powerhair.backgroundhair.module.console.domain.Account;
 import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
+import com.powerhair.backgroundhair.module.member.domain.Member;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
 import com.powerhair.backgroundhair.module.store.domain.Store;
 import com.powerhair.backgroundhair.module.store.mapper.StoreMapper;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreUpdateDTO;
+import com.powerhair.backgroundhair.module.store.model.vo.StoreDetailVO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.tool.util.UUIDUtil;
@@ -77,10 +79,19 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Store getStoreDetail(Long storeId) {
+    public StoreDetailVO getStoreDetail(Long storeId) {
         Store store = storeMapper.get(storeId);
-
-        return storeMapper.get(storeId);
+        List<Member> members = memberService.listByStoreId(storeId);
+        return StoreDetailVO.builder()
+                .id(storeId)
+                .storeName(store.getStoreName())
+                .createTime(store.getCreateTime())
+                .creatorId(store.getCreatorId())
+                .updateTime(store.getUpdateTime())
+                .updatorId(store.getUpdatorId())
+                .storeMembers(members)
+                .memberCount(members.size())
+                .build();
     }
 
     @Override
