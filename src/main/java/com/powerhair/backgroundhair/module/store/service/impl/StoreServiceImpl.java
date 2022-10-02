@@ -1,8 +1,9 @@
 package com.powerhair.backgroundhair.module.store.service.impl;
 
+import com.google.common.collect.Lists;
 import com.powerhair.backgroundhair.module.console.domain.Account;
 import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
-import com.powerhair.backgroundhair.module.store.StoreConvert;
+import com.powerhair.backgroundhair.module.member.service.MemberService;
 import com.powerhair.backgroundhair.module.store.domain.Store;
 import com.powerhair.backgroundhair.module.store.mapper.StoreMapper;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
@@ -29,6 +30,9 @@ public class StoreServiceImpl implements StoreService {
     @Autowired
     private ConsoleAccountMapper consoleAccountMapper;
 
+    @Autowired
+    private MemberService memberService;
+
 
     @Override
     public int createStore(StoreCreateDTO storeCreateDTO) {
@@ -37,7 +41,6 @@ public class StoreServiceImpl implements StoreService {
             Store store = Store.builder()
                     .id(UUIDUtil.getPrimaryKey())
                     .storeName(storeCreateDTO.getStoreName())
-                    .memberCount(0)
                     .createTime(new Date())
                     .creatorId(storeCreateDTO.getAccountId())
                     .updateTime(new Date())
@@ -54,7 +57,21 @@ public class StoreServiceImpl implements StoreService {
     public List<StoreVO> listByAccountId(Long accountId) {
         Account account = consoleAccountMapper.getById(accountId);
         if (Objects.equals(account.getAuth(), 1)) {
-            return StoreConvert.toVOList(storeMapper.listStore());
+            List<Store> stores = storeMapper.listStore();
+            List<StoreVO> storeVOS = Lists.newArrayList();
+            stores.stream().forEach(store -> {
+                StoreVO storeVO = StoreVO.builder()
+                        .id(store.getId())
+                        .storeName(store.getStoreName())
+                        .memberCount(memberService.countByStoreId(store.getId()))
+                        .createTime(store.getCreateTime())
+                        .creatorId(store.getCreatorId())
+                        .updateTime(store.getUpdateTime())
+                        .updatorId(store.getUpdatorId())
+                        .build();
+                storeVOS.add(storeVO);
+            });
+            return storeVOS;
         }
         return null;
     }

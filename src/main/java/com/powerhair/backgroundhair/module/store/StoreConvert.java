@@ -14,7 +14,6 @@ public class StoreConvert {
         return StoreVO.builder()
                 .id(store.getId())
                 .storeName(store.getStoreName())
-                .memberCount(store.getMemberCount())
                 .createTime(store.getCreateTime())
                 .creatorId(store.getCreatorId())
                 .updateTime(store.getUpdateTime())

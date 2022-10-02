@@ -25,4 +25,10 @@
         #{memberPosition},
         #{createTime});
     </insert>
+
+    <select id="countByStoreId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM member
+        WHERE store_id = #{storeId}
+    </select>
 </mapper>

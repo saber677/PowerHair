@@ -14,8 +14,6 @@ public class Store {
 
     private String storeName;
 
-    private Integer memberCount;
-
     private Date createTime;
 
     private Date updateTime;

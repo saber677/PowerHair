@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService {
                 .build();
         memberMapper.save(member);
     }
+
+    @Override
+    public Integer countByStoreId(Long storeId) {
+        return memberMapper.countByStoreId(storeId);
+    }
 }

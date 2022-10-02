@@ -5,7 +5,6 @@
     <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.store.domain.Store">
         <id property="id" column="id"/>
         <result property="storeName" column="store_name"/>
-        <result property="memberCount" column="member_count"/>
         <result property="createTime" column="create_time"/>
         <result property="creatorId" column="creator_id"/>
         <result property="updateTime" column="update_time"/>
@@ -14,7 +13,7 @@
 
     <sql id="Base_Column_List">
         id
-        ,store_name,member_count,create_time,creator_id,update_time,updator_id
+        ,store_name,create_time,creator_id,update_time,updator_id
     </sql>
 
     <insert id="save" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">

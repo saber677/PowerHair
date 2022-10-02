@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.module.member;
+package com.powerhair.backgroundhair.module.member.controller;
 
 import com.powerhair.backgroundhair.module.member.model.dto.MemberAddDTO;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
