@@ -14,7 +14,9 @@ public class IdEnumUtil {
             if (obj instanceof MemberPositionEnum) {
                 MemberPositionEnum memberPositionEnum = (MemberPositionEnum) obj;
                 for (MemberPositionEnum value : memberPositionEnum.values()) {
-                    return Objects.equals(memberPositionEnum, value) ? value.getId() : null;
+                    if (Objects.equals(memberPositionEnum, value)) {
+                        return value.getId();
+                    }
                 }
             }
 
@@ -22,7 +24,9 @@ public class IdEnumUtil {
             if (obj instanceof MemberStatusEnum) {
                 MemberStatusEnum memberStatusEnum = (MemberStatusEnum) obj;
                 for (MemberStatusEnum value : MemberStatusEnum.values()) {
-                    return Objects.equals(memberStatusEnum, value) ? value.getId() : null;
+                    if (Objects.equals(memberStatusEnum, value)) {
+                        return value.getId();
+                    }
                 }
             }
         }
