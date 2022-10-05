@@ -1,13 +1,16 @@
 package com.powerhair.backgroundhair.module.member.service.impl;
 
 import com.google.common.collect.Lists;
+import com.powerhair.backgroundhair.module.member.controller.MemberListVO;
 import com.powerhair.backgroundhair.module.member.domain.Member;
 import com.powerhair.backgroundhair.module.member.mapper.MemberMapper;
 import com.powerhair.backgroundhair.module.member.model.dto.MemberAddDTO;
 import com.powerhair.backgroundhair.module.member.model.dto.MemberModifyDTO;
 import com.powerhair.backgroundhair.module.member.model.enums.MemberPositionEnum;
 import com.powerhair.backgroundhair.module.member.model.vo.MemberPositionVO;
+import com.powerhair.backgroundhair.module.member.model.vo.MemberVO;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
+import com.powerhair.backgroundhair.module.member.service.convert.MemberConvert;
 import com.powerhair.backgroundhair.tool.util.IdEnumUtil;
 import com.powerhair.backgroundhair.tool.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +74,16 @@ public class MemberServiceImpl implements MemberService {
                     .build());
         }
         return memberPositionList;
+    }
+
+    @Override
+    public MemberListVO listByStoreId(Long storeId, String memberName, Integer size, Integer page) {
+        List<Member> members = memberMapper.list(storeId, memberName, size, (page - 1) * size);
+        List<MemberVO> memberList = MemberConvert.toVOList(members);
+        return MemberListVO.builder()
+                .memberVOS(memberList)
+                .page(page)
+                .totalCount(memberList.size())
+                .build();
     }
 }

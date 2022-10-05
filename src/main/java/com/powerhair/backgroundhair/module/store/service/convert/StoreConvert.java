@@ -1,4 +1,4 @@
-package com.powerhair.backgroundhair.module.store;
+package com.powerhair.backgroundhair.module.store.service.convert;
 
 import com.powerhair.backgroundhair.module.store.domain.Store;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;

@@ -48,7 +48,16 @@ public class MemberController {
 
     @GetMapping(value = "/position")
     @ApiOperation(value = "获取成员职位列表")
-    public Result<MemberPositionVO> getMemberPosition(){
+    public Result<MemberPositionVO> getMemberPosition() {
         return ResultUtil.success(memberService.getMemberPosition());
+    }
+
+    @GetMapping(value = "/list")
+    @ApiOperation(value = "获取成员列表")
+    public Result<MemberListVO> getMemberList(@ApiParam(value = "成员名字，模糊搜索") @RequestParam(value = "memberName", required = false) String memberName,
+                                          @ApiParam(value = "店铺ID") @RequestParam(value = "storeId") Long storeId,
+                                          @ApiParam(value = "size") @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
+                                          @ApiParam(value = "page") @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+        return ResultUtil.success(memberService.listByStoreId(storeId, memberName, size, page));
     }
 }

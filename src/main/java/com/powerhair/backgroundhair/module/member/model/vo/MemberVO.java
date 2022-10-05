@@ -20,8 +20,8 @@ public class MemberVO {
     @ApiModelProperty(value = "成员职位 0；发型师，1：洗头服务")
     private Integer memberPosition;
 
-    @ApiModelProperty(value = "成员状态 0：空闲，1：忙碌")
-    private Integer status;
+//    @ApiModelProperty(value = "成员状态 0：空闲，1：忙碌")
+//    private Integer status;
 
     private Date createTime;
 }

@@ -54,4 +54,15 @@
         </foreach>
     </delete>
 
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM member
+        WHERE store_id = #{storeId}
+        <if test="memberName != null and memberName !=''">
+            AND member_name LIKE "%" #{memberName} "%"
+        </if>
+        LIMIT #{startIndex}, #{size}
+    </select>
+
 </mapper>

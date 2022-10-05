@@ -27,7 +27,7 @@
         <include refid="Base_Column_List"/>
         FROM store
         <if test="storeName != null and storeName != ''">
-            WHERE store_name like "%" #{storeName} "%"
+            WHERE store_name LIKE "%" #{storeName} "%"
         </if>
         LIMIT #{startIndex}, #{size}
     </select>

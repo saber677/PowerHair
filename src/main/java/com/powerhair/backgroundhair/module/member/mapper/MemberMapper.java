@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface MemberMapper {
 
+    List<Member> list(@Param("storeId") Long storeId, @Param("memberName") String memberName, @Param("size") Integer size, @Param("startIndex") Integer startIndex);
+
     int deleteBatch(@Param("memberIds") List<Long> memberIds);
 
     int update(Member member);
