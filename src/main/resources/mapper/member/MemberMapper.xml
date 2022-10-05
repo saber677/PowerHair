@@ -38,4 +38,20 @@
         FROM member
         WHERE store_id = #{storeId}
     </select>
+
+    <update id="update" parameterType="com.powerhair.backgroundhair.module.member.domain.Member">
+        UPDATE member
+        SET member_name     = #{memberName},
+            member_position = #{memberPosition}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteBatch" parameterType="java.lang.Long">
+        DELETE FROM member
+        WHERE id IN
+        <foreach collection="memberIds" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

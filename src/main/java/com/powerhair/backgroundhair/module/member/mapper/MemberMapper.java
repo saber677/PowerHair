@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface MemberMapper {
 
+    int deleteBatch(@Param("memberIds") List<Long> memberIds);
+
+    int update(Member member);
+
     List<Member> listByStoreId(@Param("storeId") Long storeId);
 
     Integer countByStoreId(@Param("storeId") Long storeId);

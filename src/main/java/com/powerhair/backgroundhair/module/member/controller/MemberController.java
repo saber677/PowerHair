@@ -1,17 +1,19 @@
 package com.powerhair.backgroundhair.module.member.controller;
 
 import com.powerhair.backgroundhair.module.member.model.dto.MemberAddDTO;
+import com.powerhair.backgroundhair.module.member.model.dto.MemberModifyDTO;
+import com.powerhair.backgroundhair.module.member.model.vo.MemberPositionVO;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
 import com.powerhair.backgroundhair.tool.entity.Result;
 import com.powerhair.backgroundhair.tool.util.ResultUtil;
 import com.powerhair.backgroundhair.tool.util.UserContextUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api(tags = "成员相关操作")
 @RestController
@@ -27,5 +29,26 @@ public class MemberController {
         memberAddDTO.setAccountId(UserContextUtil.getAccountId());
         memberService.save(memberAddDTO);
         return ResultUtil.success();
+    }
+
+    @PutMapping(value = "/")
+    @ApiOperation(value = "修改成员信息")
+    public Result modifyMember(@RequestBody MemberModifyDTO memberModifyDTO) {
+        memberModifyDTO.setAccountId(UserContextUtil.getAccountId());
+        memberService.update(memberModifyDTO);
+        return ResultUtil.success();
+    }
+
+    @DeleteMapping(value = "/batch")
+    @ApiOperation(value = "批量删除成员")
+    public Result deleteBatch(@ApiParam(value = "成员ID集合") @RequestParam(value = "memberIds") List<Long> memberIds) {
+        memberService.deleteBatch(memberIds);
+        return ResultUtil.success();
+    }
+
+    @GetMapping(value = "/position")
+    @ApiOperation(value = "获取成员职位列表")
+    public Result<MemberPositionVO> getMemberPosition(){
+        return ResultUtil.success(memberService.getMemberPosition());
     }
 }
