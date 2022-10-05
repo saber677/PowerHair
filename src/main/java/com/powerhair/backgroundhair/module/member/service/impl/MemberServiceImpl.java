@@ -78,6 +78,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberListVO listByStoreId(Long storeId, String memberName, Integer size, Integer page) {
+
         List<Member> members = memberMapper.list(storeId, memberName, size, (page - 1) * size);
         List<MemberVO> memberList = MemberConvert.toVOList(members);
         return MemberListVO.builder()

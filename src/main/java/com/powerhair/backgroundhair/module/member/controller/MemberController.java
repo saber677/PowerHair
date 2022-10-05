@@ -11,8 +11,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Api(tags = "成员相关操作")
@@ -55,9 +57,9 @@ public class MemberController {
     @GetMapping(value = "/list")
     @ApiOperation(value = "获取成员列表")
     public Result<MemberListVO> getMemberList(@ApiParam(value = "成员名字，模糊搜索") @RequestParam(value = "memberName", required = false) String memberName,
-                                          @ApiParam(value = "店铺ID") @RequestParam(value = "storeId") Long storeId,
-                                          @ApiParam(value = "size") @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
-                                          @ApiParam(value = "page") @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+                                              @ApiParam(value = "店铺ID") @RequestParam(value = "storeId") Long storeId,
+                                              @ApiParam(value = "size") @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
+                                              @ApiParam(value = "page") @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         return ResultUtil.success(memberService.listByStoreId(storeId, memberName, size, page));
     }
 }
