@@ -16,7 +16,7 @@ public interface StoreService {
 
     int createStore(StoreCreateDTO storeCreateDTO);
 
-    List<StoreVO> listByAccountId(Long accountId);
+    StoreVO listByAccountId(Long accountId, String storeName, Integer size, Integer page);
 
     StoreDetailVO getStoreDetail(Long storeId);
 

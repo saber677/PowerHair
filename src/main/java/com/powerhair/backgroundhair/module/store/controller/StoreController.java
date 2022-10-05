@@ -33,8 +33,10 @@ public class StoreController {
 
     @ApiOperation(value = "获取店铺列表")
     @GetMapping(value = "/list")
-    public Result<StoreVO> listByAccountId() {
-        return ResultUtil.success(storeService.listByAccountId(UserContextUtil.getAccountId()));
+    public Result<StoreVO> listByAccountId(@ApiParam(value = "店铺名字，模糊搜索") @RequestParam(value = "storeName", required = false) String storeName,
+                                           @ApiParam(value = "size") @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
+                                           @ApiParam(value = "page") @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+        return ResultUtil.success(storeService.listByAccountId(UserContextUtil.getAccountId(), storeName, size, page));
     }
 
     @ApiOperation(value = "修改店铺信息")

@@ -56,13 +56,13 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<StoreVO> listByAccountId(Long accountId) {
+    public StoreVO listByAccountId(Long accountId, String storeName, Integer size, Integer page) {
         Account account = consoleAccountMapper.getById(accountId);
         if (Objects.equals(account.getAuth(), 1)) {
-            List<Store> stores = storeMapper.listStore();
-            List<StoreVO> storeVOS = Lists.newArrayList();
-            stores.stream().forEach(store -> {
-                StoreVO storeVO = StoreVO.builder()
+            List<Store> storeList = storeMapper.listStore(storeName, size, (page - 1) * size);
+            List<StoreVO.Stores> stores = Lists.newArrayList();
+            storeList.stream().forEach(store -> {
+                StoreVO.Stores singleStore = StoreVO.Stores.builder()
                         .id(store.getId())
                         .storeName(store.getStoreName())
                         .memberCount(memberService.countByStoreId(store.getId()))
@@ -71,9 +71,13 @@ public class StoreServiceImpl implements StoreService {
                         .updateTime(store.getUpdateTime())
                         .updatorId(store.getUpdatorId())
                         .build();
-                storeVOS.add(storeVO);
+                stores.add(singleStore);
             });
-            return storeVOS;
+            return StoreVO.builder()
+                    .stores(stores)
+                    .page(page)
+                    .totalCount(stores.size())
+                    .build();
         }
         return null;
     }

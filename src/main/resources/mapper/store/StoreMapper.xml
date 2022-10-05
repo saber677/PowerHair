@@ -26,6 +26,10 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM store
+        <if test="storeName != null and storeName != ''">
+            WHERE store_name like "%" #{storeName} "%"
+        </if>
+        LIMIT #{startIndex}, #{size}
     </select>
 
     <update id="update" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">

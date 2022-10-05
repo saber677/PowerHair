@@ -15,5 +15,5 @@ public interface StoreMapper {
 
     int save(Store store);
 
-    List<Store> listStore();
+    List<Store> listStore(@Param("storeName") String storeName, @Param("size") Integer size, @Param("startIndex") Integer startIndex);
 }

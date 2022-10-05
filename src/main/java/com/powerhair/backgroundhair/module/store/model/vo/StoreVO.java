@@ -1,27 +1,45 @@
 package com.powerhair.backgroundhair.module.store.model.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
 public class StoreVO {
 
-    private Long id;
+    @ApiModelProperty(value = "第几页")
+    private Integer page;
 
-    private String storeName;
+    @ApiModelProperty(value = "总量")
+    private Integer totalCount;
 
-    @ApiModelProperty(value = "店铺成员数量")
-    private Integer memberCount;
+    @ApiModelProperty(value = "店铺集合")
+    private List<Stores> stores;
 
-    private Date createTime;
+    @Data
+    @ApiModel
+    @Builder
+    public static class Stores {
 
-    private Date updateTime;
+        private Long id;
 
-    private Long updatorId;
+        private String storeName;
 
-    private Long creatorId;
+        @ApiModelProperty(value = "店铺成员数量")
+        private Integer memberCount;
+
+        private Date createTime;
+
+        private Date updateTime;
+
+        private Long updatorId;
+
+        private Long creatorId;
+    }
+
 }
