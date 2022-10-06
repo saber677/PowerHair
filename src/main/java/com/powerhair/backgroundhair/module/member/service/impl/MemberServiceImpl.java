@@ -15,6 +15,7 @@ import com.powerhair.backgroundhair.tool.util.IdEnumUtil;
 import com.powerhair.backgroundhair.tool.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import java.util.Date;
 import java.util.List;
 
@@ -57,8 +58,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Integer deleteBatch(List<Long> memberIds) {
-        return memberMapper.deleteBatch(memberIds);
+    public void deleteBatch(List<Long> memberIds) {
+        if (CollectionUtils.isEmpty(memberIds)) {
+            return;
+        }
+        memberMapper.deleteBatch(memberIds);
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface MemberService {
 
     List<MemberPositionVO> getMemberPosition();
 
-    Integer deleteBatch(List<Long> memberIds);
+    void deleteBatch(List<Long> memberIds);
 
     Integer update(MemberModifyDTO memberModifyDTO);
 
