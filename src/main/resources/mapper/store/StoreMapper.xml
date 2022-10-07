@@ -19,7 +19,7 @@
     <insert id="save" parameterType="com.powerhair.backgroundhair.module.store.domain.Store">
         INSERT INTO store
         (<include refid="Base_Column_List"/>)
-        VALUES (#{id}, #{storeName}, #{memberCount}, #{createTime}, #{creatorId}, #{updateTime}, #{updatorId});
+        VALUES (#{id}, #{storeName}, #{createTime}, #{creatorId}, #{updateTime}, #{updatorId});
     </insert>
 
     <select id="listStore" resultMap="BaseResultMap">
