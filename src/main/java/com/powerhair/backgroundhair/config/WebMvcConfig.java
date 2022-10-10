@@ -19,11 +19,13 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Value("${spring.jackson.date-format}")
     private String pattern;
+    @Value("${upload.path.face}")
+    private String UPLOAD_PATH;
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         String[] excludePatterns = new String[]{"/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**",
-                "/api", "/api-docs", "/api-docs/**", "/doc.html/**","/account/login"};
+                "/api", "/api-docs", "/api-docs/**", "/doc.html/**", "/account/login", "/store/face/**"};
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns(excludePatterns);
@@ -31,6 +33,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     /**
      * 将 dom.html 过滤
+     * 映射上传图片的路径
      *
      * @param registry
      */
@@ -39,6 +42,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/store/face/**").addResourceLocations("file:" + UPLOAD_PATH);
         super.addResourceHandlers(registry);
     }
 
@@ -58,4 +62,5 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         converter.setObjectMapper(objectMapper);
         converters.add(0, converter);
     }
+
 }

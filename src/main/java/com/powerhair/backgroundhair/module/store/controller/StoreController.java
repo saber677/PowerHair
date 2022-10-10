@@ -2,6 +2,7 @@ package com.powerhair.backgroundhair.module.store.controller;
 
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreUpdateDTO;
+import com.powerhair.backgroundhair.module.store.model.dto.StoreUploadFaceDTO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreDetailVO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
@@ -13,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/store")
@@ -58,6 +60,14 @@ public class StoreController {
     @GetMapping(value = "/{storeId}")
     public Result<StoreDetailVO> getStoreDetail(@ApiParam(value = "店铺ID") @PathVariable("storeId") Long storeId) {
         return ResultUtil.success(storeService.getStoreDetail(storeId));
+    }
+
+    @ApiOperation(value = "上传店铺头像")
+    @PostMapping(value = "/upload/face")
+    public Result uploadStoreFace(@ApiParam(value = "上传的头像") @RequestPart(value = "file") MultipartFile multipartFile,
+                                  @ApiParam(value = "文件上传信息") @RequestPart(value = "uploadFaceDTO") StoreUploadFaceDTO uploadFaceDTO) {
+        storeService.uploadStoreFace(multipartFile, uploadFaceDTO);
+        return ResultUtil.success();
     }
 
 }

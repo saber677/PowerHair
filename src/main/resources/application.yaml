@@ -1,22 +1,34 @@
+#
 spring:
   application:
     name: powerhair
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
   # mysql
   datasource:
     url: jdbc:mysql://localhost:3306/powerhair?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
     password: 677saber
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+#
 mybatis:
   mapper-locations:
     classpath:mapper/*/*.xml
   type-aliases-package: com.powerhair.backgroundhair.module.*.mapper
 
+#
 server:
   port: 8080
+
+  # 上传图片路径映射
+upload:
+  path:
+   face: /opt/face/
 
 
