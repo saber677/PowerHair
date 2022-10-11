@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/store")
@@ -65,9 +66,10 @@ public class StoreController {
     @ApiOperation(value = "上传店铺头像")
     @PostMapping(value = "/upload/face")
     public Result uploadStoreFace(@ApiParam(value = "上传的头像") @RequestPart(value = "file") MultipartFile multipartFile,
-                                  @ApiParam(value = "文件上传信息") @RequestPart(value = "uploadFaceDTO") StoreUploadFaceDTO uploadFaceDTO) {
-        storeService.uploadStoreFace(multipartFile, uploadFaceDTO);
-        return ResultUtil.success();
+                                  @ApiParam(value = "文件上传信息") @RequestPart(value = "uploadFaceDTO") StoreUploadFaceDTO uploadFaceDTO,
+                                  HttpServletRequest request) {
+        uploadFaceDTO.setAccountId(UserContextUtil.getAccountId());
+        return ResultUtil.success(storeService.uploadStoreFace(multipartFile, uploadFaceDTO, request));
     }
 
 }

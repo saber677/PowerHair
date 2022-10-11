@@ -20,9 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +34,13 @@ public class StoreServiceImpl implements StoreService {
 
     private static final String STORE_FACE_PATH = "/opt/face/";
 
-    private static final String STORE_FACE_NAME_CURRENT = "storeID_";
+    private static final String STORE_FACE_NAME_PREFIX = "storeID_";
+
+    private static final String STORE_FACE_NAME_SUFFIX = ".jpg";
+
+    private static final String STORE_FACE_MAPPING_PATH = "%s://%s:%s/store/face/%s";
+
+    private static final String STORE_FACE_NAME = STORE_FACE_NAME_PREFIX + "%s%s" + STORE_FACE_NAME_SUFFIX;
 
     @Autowired
     private StoreMapper storeMapper;
@@ -130,15 +136,28 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public void uploadStoreFace(MultipartFile multipartFile, StoreUploadFaceDTO uploadFaceDTO) {
+    public Object uploadStoreFace(MultipartFile multipartFile, StoreUploadFaceDTO uploadFaceDTO, HttpServletRequest request) {
+
+        if (Objects.isNull(uploadFaceDTO.getStoreId())) {
+            throw new RuntimeException("storeId is null");
+        }
+
         String storeIdStr = String.valueOf(uploadFaceDTO.getStoreId());
-        String faceName = STORE_FACE_NAME_CURRENT + storeIdStr + System.currentTimeMillis();
+        String faceName = String.format(STORE_FACE_NAME, storeIdStr, System.currentTimeMillis());
         File file = new File(STORE_FACE_PATH, faceName);
+
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdir();
+        }
+
         try {
             multipartFile.transferTo(file);
         } catch (IOException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             throw new RuntimeException(e.getMessage());
         }
+
+        String reachPath = String.format(STORE_FACE_MAPPING_PATH, request.getScheme(), request.getServerName(), request.getServerPort(), faceName);
+        return reachPath;
     }
 }

@@ -8,11 +8,11 @@ import com.powerhair.backgroundhair.module.store.model.vo.StoreDetailVO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 public interface StoreService {
 
-    void uploadStoreFace(MultipartFile multipartFile, StoreUploadFaceDTO uploadFaceDTO);
+    Object uploadStoreFace(MultipartFile multipartFile, StoreUploadFaceDTO uploadFaceDTO, HttpServletRequest request);
 
     int deleteStore(Long storeId);
 
