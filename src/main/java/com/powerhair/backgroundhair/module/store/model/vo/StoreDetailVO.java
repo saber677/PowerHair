@@ -32,4 +32,7 @@ public class StoreDetailVO {
 
     @ApiModelProperty(value = "店铺成员信息")
     private List<Member> storeMembers;
+
+    @ApiModelProperty(value = "店铺照片地址集合")
+    private List<String> storeFaceLocations;
 }

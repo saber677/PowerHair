@@ -65,8 +65,8 @@ public class StoreController {
 
     @ApiOperation(value = "上传店铺头像")
     @PostMapping(value = "/upload/face")
-    public Result uploadStoreFace(@ApiParam(value = "上传的头像") @RequestPart(value = "file") MultipartFile multipartFile,
-                                  @ApiParam(value = "文件上传信息") @RequestPart(value = "uploadFaceDTO") StoreUploadFaceDTO uploadFaceDTO,
+    public Result uploadStoreFace(@ApiParam(value = "文件上传信息") @RequestPart(value = "uploadFaceDTO") StoreUploadFaceDTO uploadFaceDTO,
+                                  @ApiParam(value = "上传的头像") @RequestPart(value = "file") MultipartFile multipartFile,
                                   HttpServletRequest request) {
         uploadFaceDTO.setAccountId(UserContextUtil.getAccountId());
         return ResultUtil.success(storeService.uploadStoreFace(multipartFile, uploadFaceDTO, request));

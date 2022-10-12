@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powerhair.backgroundhair.module.store.mapper.StoreFaceMapper">
+
+    <resultMap id="BaseResultMap" type="com.powerhair.backgroundhair.module.store.domain.StoreFace">
+        <id property="id" column="id"/>
+        <result property="storeId" column="store_id"/>
+        <result property="storeFaceLocation" column="store_face_location"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,store_id,store_face_location
+    </sql>
+
+    <select id="listByStoreId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM store_face
+        WHERE store_id = #{storeId};
+    </select>
+
+    <insert id="save" parameterType="com.powerhair.backgroundhair.module.store.domain.StoreFace">
+        INSERT INTO store_face(id, store_id, store_face_location)
+        VALUES (#{id}, #{storeId}, #{storeFaceLocation})
+    </insert>
+
+</mapper>

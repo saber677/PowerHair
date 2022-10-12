@@ -6,14 +6,17 @@ import com.powerhair.backgroundhair.module.console.mapper.ConsoleAccountMapper;
 import com.powerhair.backgroundhair.module.member.domain.Member;
 import com.powerhair.backgroundhair.module.member.service.MemberService;
 import com.powerhair.backgroundhair.module.store.domain.Store;
+import com.powerhair.backgroundhair.module.store.domain.StoreFace;
 import com.powerhair.backgroundhair.module.store.mapper.StoreMapper;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreCreateDTO;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreUpdateDTO;
 import com.powerhair.backgroundhair.module.store.model.dto.StoreUploadFaceDTO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreDetailVO;
 import com.powerhair.backgroundhair.module.store.model.vo.StoreVO;
+import com.powerhair.backgroundhair.module.store.service.StoreFaceService;
 import com.powerhair.backgroundhair.module.store.service.StoreService;
 import com.powerhair.backgroundhair.tool.util.UUIDUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -47,6 +51,8 @@ public class StoreServiceImpl implements StoreService {
     @Autowired
     private ConsoleAccountMapper consoleAccountMapper;
 
+    @Autowired
+    private StoreFaceService storeFaceService;
     @Autowired
     private MemberService memberService;
 
@@ -99,8 +105,20 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public StoreDetailVO getStoreDetail(Long storeId) {
+
+        if (Objects.isNull(storeId)) {
+            throw new RuntimeException("storeId is null");
+        }
+
+        //
         Store store = storeMapper.get(storeId);
+        //
         List<Member> members = memberService.listByStoreId(storeId);
+        //
+        List<String> storeFaceLocations = storeFaceService.listByStoreId(storeId).stream()
+                .map(StoreFace::getStoreFaceLocation)
+                .collect(Collectors.toList());
+
         return StoreDetailVO.builder()
                 .id(storeId)
                 .storeName(store.getStoreName())
@@ -110,6 +128,7 @@ public class StoreServiceImpl implements StoreService {
                 .updatorId(store.getUpdatorId())
                 .storeMembers(members)
                 .memberCount(members.size())
+                .storeFaceLocations(storeFaceLocations)
                 .build();
     }
 
@@ -158,6 +177,15 @@ public class StoreServiceImpl implements StoreService {
         }
 
         String reachPath = String.format(STORE_FACE_MAPPING_PATH, request.getScheme(), request.getServerName(), request.getServerPort(), faceName);
+
+        if (StringUtils.isNotEmpty(reachPath)) {
+            storeFaceService.save(StoreFace.builder()
+                    .id(UUIDUtil.getPrimaryKey())
+                    .storeId(uploadFaceDTO.getStoreId())
+                    .storeFaceLocation(reachPath)
+                    .build());
+        }
+
         return reachPath;
     }
 }
