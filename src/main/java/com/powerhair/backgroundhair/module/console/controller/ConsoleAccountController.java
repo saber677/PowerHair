@@ -39,7 +39,7 @@ public class ConsoleAccountController {
             GatewayUtil.setResponseParam(request, response,null,result);
         } catch (Exception e) {
 //            GatewayUtil.setResponseParam(request,response,false,result);
-            return ResultUtil.error("登录异常，请联系管理员");
+            return ResultUtil.error(e.getMessage());
         }
         return result;
     }
